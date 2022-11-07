@@ -2,6 +2,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
+
 class ModelTests(TestCase):
     """Testing Models"""
 
@@ -35,7 +36,7 @@ class ModelTests(TestCase):
             get_user_model().objects.create_user('', 'sample1123')
 
     def test_create_superuser(self):
-        user= get_user_model().objects.create_superuser(
+        user = get_user_model().objects.create_superuser(
             'test@example.com',
             'test123'
         )
