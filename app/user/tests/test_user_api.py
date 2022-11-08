@@ -136,11 +136,11 @@ class PrivateUserAPITests(TestCase):
     """Test API requests that require authentication"""
 
     def setUp(self):
-        self.user = create_user({
-            'email': 'test@example.com',
-            'password': 'asdf1234',
-            'name': 'Test Name',
-        })
+        self.user = create_user(
+            email='test@example.com',
+            password='asdf1234',
+            name='Test Name',
+        )
         self.client = APIClient()
         self.client.force_authenticate(user=self.user)
 
@@ -174,5 +174,5 @@ class PrivateUserAPITests(TestCase):
 
         self.user.refresh_from_db()
         self.assertEqual(self.user.name, payload['name'])
-        self.assertEqual(self.user.password, payload['password'])
+        self.assertTrue(self.user.check_password(payload['password']))
         self.assertEqual(res.status_code, status.HTTP_200_OK)
