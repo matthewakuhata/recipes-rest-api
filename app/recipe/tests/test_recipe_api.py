@@ -170,8 +170,11 @@ class PrivateRecipeApiTests(TestCase):
             self.assertEqual(getattr(recipe, key), value)
 
     def test_update_user_returns_error(self):
-        new_user = create_user(email='example.example@example.com',password='abc123')
-        recipe = create_recipe(user=self.user);
+        new_user = create_user(
+            email='example.example@example.com',
+            password='abc123',
+        )
+        recipe = create_recipe(user=self.user)
 
         payload = {'user': new_user.id}
         url = detail_url(recipe.id)
@@ -190,7 +193,10 @@ class PrivateRecipeApiTests(TestCase):
         self.assertFalse(Recipe.objects.filter(id=recipe.id).exists())
 
     def test_other_users_recipe_error(self):
-        new_user = create_user(email="example@example.com", password='asdfasdf')
+        new_user = create_user(
+            email="example@example.com",
+            password='asdfasdf',
+        )
         recipe = create_recipe(new_user)
 
         url = detail_url(recipe.id)
@@ -198,4 +204,3 @@ class PrivateRecipeApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
         self.assertTrue(Recipe.objects.filter(id=recipe.id).exists())
-
