@@ -289,4 +289,4 @@ class PrivateRecipeApiTests(TestCase):
         res = self.client.patch(url, payload, format='json')
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertIn(recipe.tags.count(), 0)
+        self.assertEqual(recipe.tags.count(), 0)
