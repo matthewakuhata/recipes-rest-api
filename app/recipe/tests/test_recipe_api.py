@@ -20,9 +20,11 @@ from recipe.serializers import (RecipeSerializer, RecipeDetailSerializer)
 
 RECIPES_URL = reverse('recipe:recipe-list')
 
+
 def detail_url(recipe_id):
     """Create recipe detail URL"""
     return reverse('recipe:recipe-detail', args=[recipe_id])
+
 
 def create_recipe(user, **params):
     """Create and return a sample recipe."""
@@ -37,6 +39,7 @@ def create_recipe(user, **params):
 
     recipe = Recipe.objects.create(user=user, **defaults)
     return recipe
+
 
 def create_user(**params):
     """Create and return a user"""
