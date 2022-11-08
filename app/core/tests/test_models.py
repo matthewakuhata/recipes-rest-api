@@ -5,6 +5,7 @@ from decimal import Decimal
 
 from core import models
 
+
 def create_user(**params):
     """Create and return a user"""
     return get_user_model().objects.create_user(**params)
