@@ -78,3 +78,15 @@ class ModelTests(TestCase):
         tag = models.Tag.objects.create(user=user, name='Tag')
 
         self.assertEqual(str(tag), tag.name)
+
+    def test_create_ingredient(self):
+        user = create_user(
+            email="example@example.com",
+            password='asdfasdf',
+        )
+        ingredient = models.Ingredient.objects.create(
+            user=user,
+            name='1'
+        )
+
+        self.assertEqual(str(ingredient), ingredient.name)
