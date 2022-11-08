@@ -53,7 +53,7 @@ class RecipeSerializer(serializers.ModelSerializer):
                 user=auth_user,
                 **ingredient,
             )
-            print(recipe)
+
             recipe.ingredients.add(ingredient_obj)
 
     def create(self, validated_data):
